@@ -1,1 +1,1 @@
-# pygame_games
+# Games created using *pygame* module
