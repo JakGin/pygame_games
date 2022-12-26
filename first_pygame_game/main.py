@@ -83,7 +83,6 @@ def yellow_handle_movement(keys_pressed, yellow):
         how_much_pressed += 1
     if how_much_pressed == 2:
         VEL -= 1
-    print(how_much_pressed)
 
     if keys_pressed[pygame.K_a] and yellow.x - VEL > 0: # LEFT
         yellow.x -= VEL
@@ -109,7 +108,6 @@ def red_handle_movement(keys_pressed, red):
         how_much_pressed += 1
     if keys_pressed[pygame.K_DOWN]: 
         how_much_pressed += 1
-    print(how_much_pressed)
     if how_much_pressed == 2:
         VEL -= 1
 
