@@ -72,9 +72,16 @@ def draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_hea
 
 def yellow_handle_movement(keys_pressed, yellow):
     global VEL
-    keys = {pygame.K_a, pygame.K_w, pygame.K_d, pygame.K_s}
-    keys.intersection_update(keys_pressed)
-    if len(keys) > 1:
+    how_much_pressed = 0
+    if keys_pressed[pygame.K_a]: 
+        how_much_pressed += 1
+    if keys_pressed[pygame.K_d]: 
+        how_much_pressed += 1
+    if keys_pressed[pygame.K_w]: 
+        how_much_pressed += 1
+    if keys_pressed[pygame.K_s]: 
+        how_much_pressed += 1
+    if how_much_pressed == 2:
         VEL -= 1
 
     if keys_pressed[pygame.K_a] and yellow.x - VEL > 0: # LEFT
@@ -86,15 +93,22 @@ def yellow_handle_movement(keys_pressed, yellow):
     if keys_pressed[pygame.K_s] and yellow.y + VEL + yellow.height < HEIGHT - 15: # DOWN
         yellow.y += VEL
 
-    if len(keys) > 1:
+    if how_much_pressed == 2:
         VEL += 1
 
 
 def red_handle_movement(keys_pressed, red):
     global VEL
-    keys = {pygame.K_a, pygame.K_w, pygame.K_d, pygame.K_s}
-    keys.intersection_update(keys_pressed)
-    if len(keys) > 1:
+    how_much_pressed = 0
+    if keys_pressed[pygame.K_LEFT]: 
+        how_much_pressed += 1
+    if keys_pressed[pygame.K_RIGHT]: 
+        how_much_pressed += 1
+    if keys_pressed[pygame.K_UP]: 
+        how_much_pressed += 1
+    if keys_pressed[pygame.K_DOWN]: 
+        how_much_pressed += 1
+    if how_much_pressed == 2:
         VEL -= 1
 
     if keys_pressed[pygame.K_LEFT] and red.x - VEL > BORDER.x + BORDER.width: # LEFT
@@ -106,7 +120,7 @@ def red_handle_movement(keys_pressed, red):
     if keys_pressed[pygame.K_DOWN] and red.y + VEL + red.height < HEIGHT - 15: # DOWN
         red.y += VEL
 
-    if len(keys) > 1:
+    if how_much_pressed == 2:
         VEL += 1
 
 
@@ -126,12 +140,6 @@ def handle_bullets(yellow_bullets, red_bullets, yellow, red):
             red_bullets.remove(bullet)
         elif bullet.x < 0:
             red_bullets.remove(bullet)
-
-
-def flush_input():
-    import msvcrt
-    while msvcrt.kbhit():
-        msvcrt.getch()
 
 
 def draw_winner(text):
