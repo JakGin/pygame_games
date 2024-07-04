@@ -1,0 +1,5 @@
+15_puzzles
+2048_game
+google_dinosaur_game
+minesweeper
+snake
